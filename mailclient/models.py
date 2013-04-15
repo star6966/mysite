@@ -9,7 +9,7 @@ class UserID(models.Model):
 
 class Message(models.Model):
 	to_user = models.ForeignKey(UserID, related_name="sent_to_user")
-	from_User = models.ForeignKey(UserID, related_name="sent_from_user")
+	from_user = models.ForeignKey(UserID, related_name="sent_from_user")
 	title = models.CharField(max_length=50)
 	msgBody = models.CharField(max_length=200)
 
