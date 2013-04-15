@@ -1,5 +1,5 @@
 from django.http import HttpResponse, Http404
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from mailclient.models import UserID
 
@@ -9,18 +9,12 @@ def index(request):
 	return render(request, 'mailclient/index.html', context)
 
 def outbox(request, user_id):
-	try:
-		user = UserID.objects.get(pk=user_id)
-	except UserID.DoesNotExist:
-		raise Http404
+	user = get_object_or_404(UserID, pk=user_id)
 	return render(request, 'mailclient/outbox.html', {'user':user})
 
 def inbox(request, user_id):
-	try:
-		user = UserID.objects.get(pk=user_id)
-	except UserID.DoesNotExist:
-		raise Http404
+	user = get_object_or_404(UserID, pk=user_id)
 	return render(request, 'mailclient/inbox.html', {'user':user})
 
-def newMsg(request, user_id):
+def new_message(request, user_id):
 	return HttpResponse("Ya'll be creatin some new message from User %s."% user_id)
