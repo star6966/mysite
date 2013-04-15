@@ -8,8 +8,8 @@ class UserID(models.Model):
 		return self.username
 
 class Message(models.Model):
-	toUser = models.ForeignKey(UserID, related_name="sent_to_user")
-	fromUser = models.ForeignKey(UserID, related_name="sent_from_user")
+	to_user = models.ForeignKey(UserID, related_name="sent_to_user")
+	from_User = models.ForeignKey(UserID, related_name="sent_from_user")
 	title = models.CharField(max_length=50)
 	msgBody = models.CharField(max_length=200)
 
