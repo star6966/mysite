@@ -1,7 +1,7 @@
 {% if latest_user_list %}
 	<ul>
 	{% for user in latest_user_list %}
-		<li><a href="/mailclient/{{user.id }}">{{ user.username }}</a></li>
+		<li>{{ user.username }}:<a href="/mailclient/{{user.id }}">INBOX</a>/<a href="/mailclient/{{user.id}}/outbox/">OUTBOX</a></li>
 	{% endfor %}
 	</ul>
 {% else %}

@@ -1,6 +1,6 @@
 <h1>INBOX</H1>
 <ul>
 {% for mess in account.sent_to_user.all %}
-	<li>{{ mess.title }}: {{ mess.msgBody }}</li>
+	<li>{{mess.from_user}} ---- {{ mess.title }}: {{ mess.msgBody }}</li>
 {% endfor %}
 </ul>
