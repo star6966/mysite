@@ -1,5 +1,6 @@
 <H1>Outbox</H1>
 <ul>
-{% for mess in user.sent_from_user.all %}
+{% for mess in account.sent_from_user.all %}
+	<li>{{ mess.title }}: {{ mess.msgBody }}</li>
 {% endfor %}
 </ul>

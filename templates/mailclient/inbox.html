@@ -1,5 +1,2 @@
 <h1>INBOX</H1>
-<ul>
-{% for mess in user.sent_to_user.all %}
-{% endfor %}
-</ul>
+{{ account.sent_to_user.all }}

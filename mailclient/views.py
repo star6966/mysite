@@ -9,12 +9,12 @@ def index(request):
 	return render(request, 'mailclient/index.html', context)
 
 def outbox(request, user_id):
-	user = get_object_or_404(UserID, pk=user_id)
-	return render(request, 'mailclient/outbox.html', {'user':user})
+	account = get_object_or_404(UserID, pk=user_id)
+	return render(request, 'mailclient/outbox.html', {'account':account})
 
 def inbox(request, user_id):
-	user = get_object_or_404(UserID, pk=user_id)
-	return render(request, 'mailclient/inbox.html', {'user':user})
+	account = get_object_or_404(UserID, pk=user_id)
+	return render(request, 'mailclient/inbox.html', {'account':account})
 
 def new_message(request, user_id):
 	return HttpResponse("Ya'll be creatin some new message from User %s."% user_id)
