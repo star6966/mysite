@@ -10,4 +10,6 @@ urlpatterns = patterns('',
 	url(r'(?P<user_id>\d+)/outbox/$', views.outbox, name='outbox'),
 	#ex: /mailclient/5/newMessage/
 	url(r'(?P<user_id>\d+)/newMessage/$', views.new_message, name='create'),
+
+	url(r'^(?P<user_id>\d+)/send/$', views.send, name='send'),
 )

@@ -1,0 +1,19 @@
+<h1>New Message</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'mailclient:send' account.id %}" method="post">
+	{% csrf_token %}
+	To: <select name="to_user">
+		{% for user_acct in latest_user_list %}
+			{% if user_acct.id == account.id %}
+			{% else %}
+				<option value="{{ user_acct.id }}">{{ user_acct.username }}</option>
+			{% endif %}
+		{% endfor %}
+	</select><br>
+	Title:<input type="text" name="title"><br>
+	<textarea rows="10" cols="30" name="body">
+	</textarea><br>
+	<input type="submit" value="Send" />
+</form>
