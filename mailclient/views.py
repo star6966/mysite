@@ -29,4 +29,18 @@ def send(request, user_id):
 	title = request.POST['title']
 	m = Message(to_user = to_user, from_user = account, title = title, msgBody = body)
 	m.save()
-	return render(request, 'mailclient/inbox.html', {'account':account})
+	latest_user_list = UserID.objects.all()
+	context = {'latest_user_list': latest_user_list}
+	return render(request, 'mailclient/index.html', context)
+
+def login(request):
+	username = password = ''
+	latest_user_list = UserID.objects.all()
+	username = request.POST.get('username')
+	password = request.POST.get('password')
+	for user_acct in latest_user_list:
+		if user_acct.username == username:
+			if user_acct.password == password:
+				return inbox(request, user_acct.id)
+	else:
+		return HttpResponse("Incorrect Username or Password")

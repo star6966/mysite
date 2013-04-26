@@ -1,6 +1,46 @@
-<h1>INBOX</H1>
-<ul>
-{% for mess in account.sent_to_user.all %}
-	<li>{{mess.from_user}} ---- {{ mess.title }}: {{ mess.msgBody }}</li>
-{% endfor %}
-</ul>
+{% extends "base.html" %}
+
+{% block title %}Inbox{% endblock %}
+
+{% block content %}
+<div style="height:85px" >
+		<H1 style="float:left">Inbox</H1>
+		<H4 style="float:right">| <a href=" {% url 'mailclient:outbox' account.id %}">Outbox</a> | <a href="{% url 'mailclient:create' account.id %}">New Message</a> | <a href="{% url 'mailclient:index' %}">Log Out</a> | Erik</H4>
+	</div>
+	<div>	
+	<div style="width:39%;float:left">
+		<table border="1" style="width:100%">
+			{% for mess in account.sent_to_user.all %}
+					<tr>
+					<td class="msg" id="msg_{{ mess.id }}">
+						From: {{mess.from_user}}<br>
+						Subject: {{mess.title}}
+					</td>
+				</tr>
+				{% endfor %}
+		</table>
+	</div>
+	{% for mess in account.sent_to_user.all %}
+	<div style="width:60%;float:right;display:none" class="msg_body" id="body_msg_{{mess.id}}">
+		<div>
+			<b> To</b>:{{mess.to_user}}<br>
+			<b> From</b>: {{mess.from_user}}<br>
+			<b> Subject</b>: {{mess.title}}
+		</div>
+		<hr>
+		<div>
+			{{mess.msgBody}}
+		</div>
+	</div>
+	{% endfor %}
+</div>
+<script>
+
+		$( ".msg" ).on( "click", function( event ) {
+			div_id = "body_"+$(this).attr('id');
+			$(".msg_body").hide();
+			$("#"+div_id).show();
+
+		});
+	</script>
+{% endblock %}

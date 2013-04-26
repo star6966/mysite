@@ -1,5 +1,7 @@
-<h1>New Message</h1>
-
+<div style="height:85px" >
+		<H1 style="float:left">New Message</H1>
+		<H4 style="float:right">| <a href=" {% url 'mailclient:inbox' account.id %}">Inbox</a> | <a href="{% url 'mailclient:outbox' account.id %}">Outbox</a> | <a href="{% url 'mailclient:index' %}">Log Out</a> | Erik</H4>
+	</div>
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
 <form action="{% url 'mailclient:send' account.id %}" method="post">
